@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://devlink.local/schemas/device.schema.json",
+  "title": "DevLink Device",
+  "type": "object",
+  "required": ["id", "name", "type", "source", "status", "createdAt", "updatedAt"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "name": { "type": "string", "minLength": 1 },
+    "type": { "type": "string" },
+    "source": { "type": "string", "enum": ["virtual", "physical"] },
+    "status": { "type": "string", "enum": ["offline", "online", "warning", "error"] },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
