@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry"><rect><x>0</x><y>0</y><width>760</width><height>520</height></rect></property>
+  <property name="windowTitle"><string>DevLink</string></property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item><layout class="QHBoxLayout" name="connectionLayout">
+     <item><widget class="QLabel" name="connectionLabel"><property name="text"><string>正在连接...</string></property></widget></item>
+     <item><spacer name="horizontalSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property></spacer></item>
+     <item><widget class="QPushButton" name="refreshButton"><property name="text"><string>刷新</string></property></widget></item>
+    </layout></item>
+    <item><widget class="QLabel" name="listTitle"><property name="text"><string>设备列表</string></property></widget></item>
+    <item><widget class="QListWidget" name="deviceList"/></item>
+    <item><layout class="QHBoxLayout" name="editLayout">
+     <item><widget class="QLineEdit" name="nameEdit"><property name="placeholderText"><string>输入设备名称</string></property></widget></item>
+     <item><widget class="QPushButton" name="addButton"><property name="text"><string>新增设备</string></property></widget></item>
+     <item><widget class="QPushButton" name="renameButton"><property name="text"><string>修改名称</string></property></widget></item>
+     <item><widget class="QPushButton" name="deleteButton"><property name="text"><string>删除设备</string></property></widget></item>
+    </layout></item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/><connections/>
+</ui>
