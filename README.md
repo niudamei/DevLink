@@ -1,43 +1,38 @@
 # DevLink
 
-DevLink is a cross-platform device management and communication platform with a Qt desktop client, a Vue web client, and a centralized C++/Qt backend.
+DevLink is a device operations platform with a C++/Qt backend, a Qt Widgets desktop client, and a Vue 3 web client.
 
 ## Technology
 
 - Backend: C++17, Qt 6, Qt HttpServer, Qt WebSockets
-- Desktop: Qt 6 Widgets, Qt Designer UI forms, Qt Network, Qt WebSockets
+- Desktop: Qt 6 Widgets, Qt Designer UI, Qt Network, Qt WebSockets
 - Web: Vue 3, TypeScript, Vite
-- Build: CMake
-- Initial development platform: Windows
-- Planned deployment platform: Ubuntu 22.04+
+- Build: CMake + Ninja
+- Initial development: Windows / Qt 6.10.3 MinGW 64-bit
+- Planned deployment: Ubuntu 22.04+
 
 ## First milestone
 
-The first milestone implements bidirectional device-management synchronization:
+- Device create, list, rename, and delete from desktop and web.
+- REST API as the command interface.
+- WebSocket events for cross-client real-time synchronization.
+- One backend-owned device state shared by all clients.
 
-1. Add, edit, and delete devices from the Qt desktop client.
-2. Add, edit, and delete devices from the Vue web client.
-3. Publish device changes through WebSocket events.
-4. Refresh client snapshots after receiving server events.
+## Repository layout
 
-## Initial API
+- backend/: C++/Qt API server and in-memory device store.
+- desktop/: Qt Widgets client; UI is maintained in Qt Designer .ui files.
+- web/: Vue 3 + TypeScript web client.
+- shared/: shared API contracts.
+- docs/: architecture, API, and development notes.
 
-Base path: `/api/v1`
+## Build
 
-- `GET /health`
-- `GET /devices`
-- `POST /devices`
-- `PUT /devices/{id}`
-- `DELETE /devices/{id}`
+See docs/development/windows.md.
 
-WebSocket endpoint: `/ws` (initial development port: 8081).
+    cmake -S . -B build -G Ninja -DCMAKE_PREFIX_PATH="C:/Qt/6.10.3/mingw_64" -DCMAKE_BUILD_TYPE=Debug
+    cmake --build build
 
-## Development environment
+## Important limitations
 
-The initial Windows build targets Qt 6.10.3 with the MinGW 64-bit kit installed at:
-
-`C:/Qt/6.10.3/mingw_64`
-
-## Current limitations
-
-The first prototype is intended for a trusted development LAN only. Before production deployment, add persistent storage, authentication and authorization, audit logging, and TLS/WSS.
+This is the first development scaffold. Device data is stored in memory and is lost when the backend exits. Authentication, authorization, audit logs, SQLite persistence, hardware drivers, TLS/WSS, and production deployment hardening are not implemented. Run only on a trusted development LAN; do not expose these development services to the public internet.
